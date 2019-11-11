@@ -8,7 +8,7 @@ inquirer
     name: "username"
   })
   .then(function({ username }) {
-    const queryUrl = `https://api.github.com/users/${username}/repos?per_page=100`;
+    const queryUrl = `https://api.github.com/users/${username}`;
 
     axios.get(queryUrl).then(function(res) {
       const repoNames = res.data.map(function(repo) {
@@ -204,3 +204,31 @@ const colors = {
         </style>`
           }
   
+
+function promptUser() {
+  return inquirer.prompt([
+    {
+      type: "input",
+      name: "username",
+      message: "What is your username?"
+    },
+
+    {
+      type: "input",
+      name: "location",
+      message: "Where are you from?"
+    },
+
+    {
+      type: "input",
+      name: "github",
+      message: "Enter your GitHub Username"
+    },
+
+    {
+      type: "input",
+      name: "linkedin",
+      message: "Enter your LinkedIn URL."
+    }
+  ]);
+}
